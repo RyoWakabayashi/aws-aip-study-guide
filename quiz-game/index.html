@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS Certified Generative AI Developer - Professional クイズ</title>
+    <meta
+      name="description"
+      content="AWS Certified Generative AI Developer - Professional (AIP-C01) 試験対策クイズゲーム"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxwYXRoIGQ9Ik05NiA0OEM3My45MDg2IDQ4IDU2IDY1LjkwODYgNTYgODhWMTA0QzU2IDEyNi4wOTEgNzMuOTA4NiAxNDQgOTYgMTQ0QzExOC4wOTEgMTQ0IDEzNiAxMjYuMDkxIDEzNiAxMDRWODhDMTM2IDY1LjkwODYgMTE4LjA5MSA0OCA5NiA0OFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik04MCA3MkM4MCA2OC42ODYzIDgyLjY4NjMgNjYgODYgNjZIMTA2QzEwOS4zMTQgNjYgMTEyIDY4LjY4NjMgMTEyIDcyQzExMiA3NS4zMTM3IDEwOS4zMTQgNzggMTA2IDc4SDg2QzgyLjY4NjMgNzggODAgNzUuMzEzNyA4MCA3MloiIGZpbGw9IiM2NjdlZWEiLz4KPHBhdGggZD0iTTgwIDk2QzgwIDkyLjY4NjMgODIuNjg2MyA5MCA4NiA5MEgxMDZDMTA5LjMxNCA5MCAxMTIgOTIuNjg2MyAxMTIgOTZDMTEyIDk5LjMxMzcgMTA5LjMxNCAxMDIgMTA2IDEwMkg4NkM4Mi42ODYzIDEwMiA4MCA5OS4zMTM3IDgwIDk2WiIgZmlsbD0iIzY2N2VlYSIvPgo8cGF0aCBkPSJNODAgMTIwQzgwIDExNi42ODYgODIuNjg2MyAxMTQgODYgMTE0SDEwNkMxMDkuMzE0IDExNCAxMTIgMTE2LjY4NiAxMTIgMTIwQzExMiAxMjMuMzE0IDEwOS4zMTQgMTI2IDEwNiAxMjZIODZDODIuNjg2MyAxMjYgODAgMTIzLjMxNCA4MCAxMjBaIiBmaWxsPSIjNjY3ZWVhIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSIxOTIiIHkyPSIxOTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzY2N2VlYSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3NjRiYTIiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AWS AIP Quiz" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>AWS AIP-C01 試験対策クイズ</h1>
+        <p>
+          AWS Certified Generative AI Developer - Professional に向けた実装・設計クイズ
+        </p>
+      </header>
+
+      <div id="start-screen" class="screen active">
+        <div class="card">
+          <h2>クイズを開始しましょう</h2>
+          <p>ランダムクイズに挑戦して、AWSサービスの知識を確認しましょう。</p>
+          <div class="stats">
+            <div class="stat-item">
+              <span id="total-questions" class="stat-number">-</span>
+              <span class="stat-label">問題数</span>
+            </div>
+            <div class="stat-item">
+              <span id="total-categories" class="stat-number">-</span>
+              <span class="stat-label">カテゴリ</span>
+            </div>
+          </div>
+
+          <div class="difficulty-selection">
+            <h3>難易度を選択</h3>
+            <div class="difficulty-options">
+              <label class="difficulty-option">
+                <input type="radio" name="difficulty" value="basic" checked>
+                <span class="option-label">初級編</span>
+                <span class="option-description">基本的な知識を確認</span>
+                <span class="option-details">制限時間: 30秒</span>
+              </label>
+              <label class="difficulty-option">
+                <input type="radio" name="difficulty" value="advanced">
+                <span class="option-label">上級編</span>
+                <span class="option-description">本番試験レベルの長文問題</span>
+                <span class="option-details">制限時間: 90秒</span>
+              </label>
+              <label class="difficulty-option">
+                <input type="radio" name="difficulty" value="exam">
+                <span class="option-label">模擬試験</span>
+                <span class="option-description">5ドメイン比率(31/26/20/12/11%)で75問を出題</span>
+                <span class="option-details">制限時間: 180分(全体)</span>
+              </label>
+              <label class="difficulty-option">
+                <input type="radio" name="difficulty" value="diagnostic">
+                <span class="option-label">弱点診断</span>
+                <span class="option-description">5ドメインを均等網羅する20問で弱点を診断</span>
+                <span class="option-details">制限時間: 45秒/問</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="exam-mode-notice" class="exam-mode-notice" style="display: none">
+            <p>
+              このモードでは、カテゴリ・問題数の選択は無効になります。
+              問題は公式試験ガイドの5ドメイン比率に応じて自動的に選ばれます
+              （カテゴリ単位の重み付けによる参考区分です）。
+            </p>
+          </div>
+
+          <div id="category-selection" class="category-selection">
+            <div class="category-toggle" id="category-toggle">
+              <h3>カテゴリを選択 <span class="toggle-icon">▼</span></h3>
+              <p class="category-instruction">
+                複数選択可能です。選択しない場合は全カテゴリから出題されます。
+              </p>
+            </div>
+            <div id="category-content" class="category-content collapsed">
+              <div id="category-checkboxes" class="category-checkboxes">
+                <!-- カテゴリチェックボックスがJavaScriptで動的に生成されます -->
+              </div>
+              <div class="category-actions">
+                <button id="select-all-btn" class="btn btn-secondary">
+                  全て選択
+                </button>
+                <button id="clear-all-btn" class="btn btn-secondary">
+                  全て解除
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="question-count-selection" class="question-count-selection">
+            <h3>問題数を選択</h3>
+            <div class="question-count-options">
+              <label class="question-count-option">
+                <input type="radio" name="question-count" value="10" checked />
+                <span class="option-label">10問</span>
+                <span class="option-description">短時間で集中学習</span>
+              </label>
+              <label class="question-count-option">
+                <input type="radio" name="question-count" value="30" />
+                <span class="option-label">30問</span>
+                <span class="option-description">しっかり学習</span>
+              </label>
+              <label class="question-count-option">
+                <input type="radio" name="question-count" value="50" />
+                <span class="option-label">50問</span>
+                <span class="option-description">本格的な試験対策</span>
+              </label>
+            </div>
+          </div>
+
+          <button id="start-btn" class="btn btn-primary">クイズ開始</button>
+        </div>
+      </div>
+
+      <div id="quiz-screen" class="screen">
+        <div class="quiz-header">
+          <div class="progress-bar">
+            <div id="progress" class="progress-fill"></div>
+          </div>
+          <div class="quiz-info">
+            <div class="quiz-info-left">
+              <span id="question-counter">1 / 10</span>
+              <span id="category-badge" class="category-badge">カテゴリ</span>
+              <span id="streak-counter" class="streak-counter">🔥 0</span>
+            </div>
+            <div class="quiz-info-right">
+              <button
+                id="next-btn"
+                class="btn btn-primary btn-compact"
+                style="display: none"
+              >
+                次の問題
+              </button>
+              <div id="timer" class="timer">
+                <span id="timer-text">30</span>
+                <div id="timer-circle" class="timer-circle">
+                  <svg class="timer-svg" viewBox="0 0 36 36">
+                    <path
+                      class="timer-bg"
+                      d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                    />
+                    <path
+                      id="timer-progress"
+                      class="timer-progress"
+                      d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div id="exam-timer" class="exam-timer" style="display: none">
+                ⏱ 残り時間: <span id="exam-timer-text">180:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-content">
+          <div class="question-card">
+            <h2 id="question-text">質問がここに表示されます</h2>
+            <div id="options-container" class="options">
+              <!-- 選択肢がJavaScriptで動的に生成されます -->
+            </div>
+            <div
+              id="explanation-container"
+              class="explanation-container"
+              style="display: none"
+            >
+              <div class="explanation-content">
+                <h3 class="explanation-title">解説</h3>
+                <p id="explanation-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="result-screen" class="screen">
+        <div class="card">
+          <h2>クイズ結果</h2>
+          <div class="result-summary">
+            <div class="score-circle">
+              <span id="final-score">0</span>
+              <span id="score-total" class="score-total">/ 10</span>
+            </div>
+            <div class="result-details">
+              <div class="result-item">
+                <span class="result-label">正答率</span>
+                <span id="accuracy" class="result-value">0%</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">正解数</span>
+                <span id="correct-count" class="result-value">0</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">不正解数</span>
+                <span id="incorrect-count" class="result-value">0</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">時間切れ</span>
+                <span id="timeout-count" class="result-value">0</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">最大連続正解</span>
+                <span id="max-streak" class="result-value">🔥 0</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="performance-message" class="performance-message">
+            <!-- パフォーマンスメッセージがここに表示されます -->
+          </div>
+
+          <div id="domain-breakdown" class="domain-breakdown" style="display: none">
+            <!-- ドメイン別正答率がJavaScriptで動的に生成されます -->
+          </div>
+
+          <div class="result-actions">
+            <button id="retry-btn" class="btn btn-primary">もう一度挑戦</button>
+            <button id="review-incorrect-btn" class="btn btn-warning" style="display: none;">
+              間違った問題を復習
+            </button>
+            <button id="review-btn" class="btn btn-secondary">
+              解答を確認
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="review-screen" class="screen">
+        <div class="review-header">
+          <h2>解答確認</h2>
+          <button id="back-to-result-btn" class="btn btn-secondary">
+            結果に戻る
+          </button>
+        </div>
+        <div id="review-content" class="review-content">
+          <!-- 解答確認内容がJavaScriptで動的に生成されます -->
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 AWS AIP Study Guide - MIT License</p>
+    </footer>
+
+    <script src="questions.js"></script>
+    <script src="questions-advanced.js"></script>
+    <script src="domain-weights.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

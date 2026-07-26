@@ -1,0 +1,1 @@
+module.exports = [{ id: 'implementation-advanced-1', category: '実装・統合', question: '注文操作を行うエージェントの安全な実装として選択すべき2つはどれですか。', options: ['ツール入力をスキーマ検証する', '高リスク操作に人間の承認を置く', 'モデル出力をそのまま実行する', 'ツールに管理者権限を与える', '停止条件を設けない', '失敗を再試行し続ける'], correct: [0, 1], multipleChoice: true, explanation: '副作用のある操作には検証、最小権限、承認、停止条件が必要です。' }]

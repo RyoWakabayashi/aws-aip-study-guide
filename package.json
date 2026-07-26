@@ -1,0 +1,28 @@
+{
+  "name": "aws-aip-study-guide",
+  "version": "1.0.0",
+  "description": "AWS Certified Generative AI Developer - Professional (AIP-C01) 学習ガイド",
+  "scripts": {
+    "lint:md": "markdownlint \"**/*.md\" --ignore node_modules",
+    "lint:md:fix": "markdownlint \"**/*.md\" --ignore node_modules --fix",
+    "lint:md:output": "markdownlint \"**/*.md\" --ignore node_modules --output markdownlint-results.txt",
+    "test": "npm run lint:md"
+  },
+  "keywords": [
+    "aws",
+    "generative-ai",
+    "bedrock",
+    "professional",
+    "certification",
+    "aip-c01",
+    "study-guide"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "markdownlint-cli": "^0.45.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

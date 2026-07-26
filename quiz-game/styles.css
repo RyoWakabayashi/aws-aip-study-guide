@@ -1,0 +1,2073 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    flex: 1;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Start Screen */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #dee2e6;
+}
+
+.btn-secondary:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+/* Quiz Screen */
+.quiz-header {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.quiz-info-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quiz-info-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-compact {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    min-width: auto;
+    white-space: nowrap;
+}
+
+.category-badge {
+    background: #667eea;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.streak-counter {
+    background: linear-gradient(135deg, #ff6b6b, #ffa500);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+}
+
+.streak-counter.streak-active {
+    animation: streakPulse 1s ease-in-out;
+    transform: scale(1.05);
+}
+
+@keyframes streakPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); box-shadow: 0 4px 8px rgba(255, 107, 107, 0.5); }
+    100% { transform: scale(1.05); }
+}
+
+/* Timer Styles */
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timer-circle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.timer-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.timer-bg {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 2;
+}
+
+.timer-progress {
+    fill: none;
+    stroke: #667eea;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 100, 100;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.timer-progress.warning {
+    stroke: #ff9800;
+}
+
+.timer-progress.danger {
+    stroke: #f44336;
+}
+
+#timer-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    min-width: 2rem;
+    text-align: center;
+}
+
+#timer-text.warning {
+    color: #ff9800;
+}
+
+#timer-text.danger {
+    color: #f44336;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Exam Mode Timer (模擬試験モード：全体タイマー) */
+.exam-timer {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #6f42c1;
+    background: rgba(111, 66, 193, 0.1);
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+}
+
+.exam-timer.danger {
+    color: #f44336;
+    background: rgba(244, 67, 54, 0.12);
+    animation: pulse 1s infinite;
+}
+
+.exam-mode-notice {
+    background: #f3f0fb;
+    border: 2px solid #6f42c1;
+    border-radius: 8px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #4b2c85;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Time Up Notification */
+.time-up-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(244, 67, 54, 0.95);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    animation: slideIn 0.3s ease, slideOut 0.3s ease 1.7s forwards;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+/* Question Card */
+.question-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+}
+
+.question-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #2c3e50;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* 上級編問題の長文対応 */
+.question-card h2 p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.question-card h2 ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.question-card h2 li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.question-card h2 strong {
+    font-weight: 600;
+    color: #1a202c;
+}
+
+.question-card h2 code {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 0.2rem 0.4rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #2d3748;
+}
+
+/* 上級編問題の特別なスタイル */
+#quiz-screen.difficulty-advanced .question-card h2 {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-height: 50vh;
+    overflow-y: auto;
+    padding: 1.5rem;
+    background: #fafafa;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+#quiz-screen.difficulty-advanced .question-card h2::-webkit-scrollbar {
+    width: 6px;
+}
+
+#quiz-screen.difficulty-advanced .question-card h2::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+#quiz-screen.difficulty-advanced .question-card h2::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+#quiz-screen.difficulty-advanced .question-card h2::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Explanation Container */
+.explanation-container {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e0e0e0;
+    animation: slideDown 0.3s ease-out;
+}
+
+.explanation-content {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.explanation-title {
+    color: #667eea;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.explanation-title::before {
+    content: "💡";
+    font-size: 1.2rem;
+}
+
+#explanation-text {
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+    word-wrap: break-word;
+}
+
+/* 解説内の改行とフォーマット対応 */
+#explanation-text p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+#explanation-text ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+#explanation-text li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+#explanation-text strong {
+    font-weight: 600;
+    color: #1a202c;
+}
+
+#explanation-text code {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 0.2rem 0.4rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #2d3748;
+}
+
+/* 上級編解説の特別なスタイル */
+#quiz-screen.difficulty-advanced #explanation-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 1rem;
+    background: #fafafa;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+}
+
+#quiz-screen.difficulty-advanced #explanation-text::-webkit-scrollbar {
+    width: 6px;
+}
+
+#quiz-screen.difficulty-advanced #explanation-text::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+#quiz-screen.difficulty-advanced #explanation-text::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+#quiz-screen.difficulty-advanced #explanation-text::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 200px;
+    }
+}
+
+/* Options */
+.options {
+    display: grid;
+    gap: 1rem;
+}
+
+.option {
+    background: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.option:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+.option.selected {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.option.correct {
+    border-color: #28a745;
+    background: #d4edda;
+    color: #155724;
+    position: relative;
+}
+
+.option.incorrect {
+    border-color: #dc3545;
+    background: #f8d7da;
+    color: #721c24;
+    position: relative;
+}
+
+/* 複数選択問題の正解・不正解表示の改善 */
+.option.multiple-choice.correct::after {
+    content: '✓ 正解';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #28a745;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+.option.multiple-choice.incorrect::after {
+    content: '✗ 不正解';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #dc3545;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+.option.multiple-choice.user-selected {
+    border-color: #007bff;
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+.option.multiple-choice.user-selected::before {
+    content: '選択済み';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #007bff;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.option.multiple-choice.user-selected.correct::before {
+    background: #28a745;
+    content: '選択済み';
+}
+
+.option.multiple-choice.user-selected.incorrect::before {
+    background: #dc3545;
+    content: '選択済み';
+}
+
+/* 複数選択問題の結果表示スタイル */
+.multiple-choice-result {
+    background: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.multiple-choice-result.result-correct {
+    border-color: #28a745;
+    background: #d4edda;
+}
+
+.multiple-choice-result.result-incorrect {
+    border-color: #dc3545;
+    background: #f8d7da;
+}
+
+.multiple-choice-result h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+}
+
+.result-section {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.result-section:last-child {
+    margin-bottom: 0;
+}
+
+.result-section strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #495057;
+}
+
+.correct-answers {
+    color: #28a745;
+    font-weight: 500;
+}
+
+.user-answers {
+    color: #007bff;
+    font-weight: 500;
+}
+
+.user-answers.no-selection {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.missed-correct {
+    border-left: 4px solid #ffc107;
+    background: #fff3cd;
+}
+
+.missed-answers {
+    color: #856404;
+    font-weight: 500;
+}
+
+.wrong-selections {
+    border-left: 4px solid #dc3545;
+    background: #f8d7da;
+}
+
+.wrong-answers {
+    color: #721c24;
+    font-weight: 500;
+}
+
+/* 正解・不正解時の派手な演出 */
+.celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.celebration-content {
+    text-align: center;
+    animation: celebrationBounce 1.5s ease-out;
+}
+
+.celebration-correct {
+    color: #28a745;
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(40, 167, 69, 0.8);
+    animation: correctCelebration 2s ease-out;
+}
+
+.celebration-incorrect {
+    color: #dc3545;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(220, 53, 69, 0.8);
+    animation: incorrectShake 1.5s ease-out;
+}
+
+.celebration-message {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: messageSlideIn 0.8s ease-out 0.5s forwards;
+}
+
+/* 正解時のアニメーション */
+@keyframes correctCelebration {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.3) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 0.9;
+    }
+}
+
+@keyframes celebrationBounce {
+    0% {
+        transform: translateY(-100px) scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(20px) scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+}
+
+/* 不正解時のアニメーション */
+@keyframes incorrectShake {
+    0%, 100% {
+        transform: translateX(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        transform: translateX(-10px) scale(1.1);
+        opacity: 1;
+    }
+    20% {
+        transform: translateX(10px) scale(1.1);
+        opacity: 1;
+    }
+    30% {
+        transform: translateX(-8px) scale(1.05);
+        opacity: 1;
+    }
+    40% {
+        transform: translateX(8px) scale(1.05);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-5px) scale(1);
+        opacity: 1;
+    }
+    60% {
+        transform: translateX(5px) scale(1);
+        opacity: 1;
+    }
+    70% {
+        transform: translateX(-2px) scale(1);
+        opacity: 0.8;
+    }
+    80% {
+        transform: translateX(2px) scale(1);
+        opacity: 0.6;
+    }
+    90% {
+        transform: translateX(0) scale(1);
+        opacity: 0.3;
+    }
+}
+
+@keyframes messageSlideIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 紙吹雪エフェクト */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f39c12;
+    animation: confettiFall 3s linear infinite;
+}
+
+.confetti:nth-child(odd) {
+    background: #e74c3c;
+    animation-delay: -0.5s;
+}
+
+.confetti:nth-child(even) {
+    background: #3498db;
+    animation-delay: -1s;
+}
+
+.confetti:nth-child(3n) {
+    background: #2ecc71;
+    animation-delay: -1.5s;
+}
+
+.confetti:nth-child(4n) {
+    background: #9b59b6;
+    animation-delay: -2s;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* 選択肢の派手なアニメーション */
+.option.correct-animation {
+    animation: correctPulse 1s ease-in-out;
+    transform-origin: center;
+}
+
+.option.incorrect-animation {
+    animation: incorrectWiggle 0.8s ease-in-out;
+}
+
+@keyframes correctPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+    25% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0.4);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 20px rgba(40, 167, 69, 0.2);
+    }
+    75% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0.1);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+@keyframes incorrectWiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-3deg) scale(1.02);
+    }
+    75% {
+        transform: rotate(3deg) scale(1.02);
+    }
+}
+
+/* 画面全体の効果 */
+.screen-flash-correct {
+    animation: flashCorrect 0.5s ease-out;
+}
+
+.screen-flash-incorrect {
+    animation: flashIncorrect 0.5s ease-out;
+}
+
+@keyframes flashCorrect {
+    0% {
+        background-color: rgba(40, 167, 69, 0);
+    }
+    50% {
+        background-color: rgba(40, 167, 69, 0.1);
+    }
+    100% {
+        background-color: rgba(40, 167, 69, 0);
+    }
+}
+
+@keyframes flashIncorrect {
+    0% {
+        background-color: rgba(220, 53, 69, 0);
+    }
+    50% {
+        background-color: rgba(220, 53, 69, 0.1);
+    }
+    100% {
+        background-color: rgba(220, 53, 69, 0);
+    }
+}
+
+/* Multiple Choice Options */
+.option.multiple-choice {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.option.multiple-choice input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #667eea;
+    transition: transform 0.2s ease;
+}
+
+.option.multiple-choice label {
+    flex: 1;
+    cursor: pointer;
+    margin: 0;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.option.multiple-choice:hover:not(.disabled) {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+.option.multiple-choice:hover:not(.disabled) input[type="checkbox"] {
+    transform: scale(1.1);
+}
+
+.option.multiple-choice:active:not(.disabled) {
+    transform: translateY(0);
+}
+
+/* チェックされた状態の視覚的フィードバック */
+.option.multiple-choice.checked {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.option.multiple-choice.checked label {
+    font-weight: 600;
+    color: #667eea;
+}
+
+/* Submit Answer Button */
+.submit-container {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.submit-answer-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.submit-answer-btn:hover:not(:disabled) {
+    background: #5a67d8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.submit-answer-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Question Type Badge */
+.question-type {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 8px;
+    text-transform: uppercase;
+}
+
+.question-type.single {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.question-type.multiple {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+/* Quiz Controls */
+.quiz-controls {
+    text-align: center;
+}
+
+/* Result Screen */
+.result-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.score-circle span:first-child {
+    font-size: 2.5rem;
+}
+
+.score-total {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.result-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 150px;
+}
+
+.result-label {
+    color: #666;
+}
+
+.result-value {
+    font-weight: bold;
+    color: #333;
+}
+
+.performance-message {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #666;
+}
+
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 模擬試験の合格ライン目安 */
+.exam-pass-estimate {
+    margin-top: 1rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.exam-pass-estimate.pass {
+    background: #e8f5e8;
+    border: 2px solid #4caf50;
+    color: #2e7d32;
+}
+
+.exam-pass-estimate.fail {
+    background: #fff3e0;
+    border: 2px solid #ff9800;
+    color: #e65100;
+}
+
+.exam-pass-estimate p {
+    margin: 0.4rem 0 0;
+    font-style: normal;
+}
+
+/* ドメイン別正答率（模擬試験・弱点診断モード） */
+.domain-breakdown {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.domain-breakdown h3 {
+    margin: 0 0 0.5rem;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.domain-breakdown-note {
+    font-size: 0.8rem;
+    color: #868e96;
+    margin: 0 0 1rem;
+}
+
+.domain-breakdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.domain-breakdown-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.domain-breakdown-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+.domain-breakdown-name {
+    font-weight: 600;
+}
+
+.domain-breakdown-bar {
+    background: #e9ecef;
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.domain-breakdown-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6f42c1, #8b5cf6);
+    border-radius: 10px;
+    transition: width 0.6s ease;
+}
+
+.domain-breakdown-recommendation {
+    margin-top: 1.2rem;
+    padding: 0.9rem 1.1rem;
+    background: #f3f0fb;
+    border-left: 4px solid #6f42c1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #4b2c85;
+}
+
+.domain-breakdown-recommendation ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.domain-breakdown-recommendation a {
+    color: #6f42c1;
+    font-weight: 600;
+}
+
+/* Review Screen */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.review-header h2 {
+    color: #333;
+    margin: 0;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.review-item {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.review-question {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.review-answer {
+    margin-bottom: 0.5rem;
+}
+
+.review-answer.correct {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.review-answer.incorrect {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.review-answer.user {
+    color: #667eea;
+}
+
+.review-answer.timeout {
+    color: #ff9800;
+    font-weight: 600;
+}
+
+.review-time {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.review-time.timeout {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.review-explanation {
+    background: #f8f9fa;
+    border-left: 4px solid #667eea;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* レビュー解説内の改行とフォーマット対応 */
+.review-explanation p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.review-explanation ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.review-explanation li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.review-explanation strong {
+    font-weight: 600;
+    color: #1a202c;
+}
+
+.review-explanation code {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 0.2rem 0.4rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #2d3748;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    color: white;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .quiz-info-left,
+    .quiz-info-right {
+        gap: 0.5rem;
+    }
+    
+    .btn-compact {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .category-badge {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+    
+    .streak-counter {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+    
+    /* 複数選択問題の結果表示のレスポンシブ対応 */
+    .multiple-choice-result {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .multiple-choice-result h4 {
+        font-size: 1rem;
+    }
+    
+    .result-section {
+        padding: 0.4rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .option.multiple-choice.correct::after,
+    .option.multiple-choice.incorrect::after {
+        font-size: 0.65rem;
+        padding: 1px 6px;
+        right: 8px;
+    }
+    
+    .option.multiple-choice.user-selected::before {
+        font-size: 0.6rem;
+        padding: 1px 4px;
+        left: 8px;
+    }
+    
+    .timer {
+        gap: 0.3rem;
+    }
+    
+    .timer-circle {
+        width: 35px;
+        height: 35px;
+    }
+    
+    #timer-text {
+        font-size: 1rem;
+    }
+    
+    .stats {
+        gap: 1rem;
+    }
+    
+    .category-checkboxes {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .category-actions .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    /* 問題数選択のレスポンシブ対応 */
+    .question-count-selection {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .question-count-options {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .question-count-option {
+        min-width: auto;
+        padding: 0.75rem;
+    }
+    
+    .option-label {
+        font-size: 1.1rem;
+    }
+    
+    .option-description {
+        font-size: 0.8rem;
+    }
+    
+    .result-summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .result-actions {
+        flex-direction: column;
+    }
+    
+    .review-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .quiz-info {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: stretch;
+    }
+    
+    .quiz-info-left,
+    .quiz-info-right {
+        justify-content: center;
+        gap: 0.8rem;
+    }
+    
+    .quiz-info-right {
+        order: -1;
+    }
+    
+    .btn-compact {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .question-card h2 {
+        font-size: 1.1rem;
+    }
+    
+    .score-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .score-circle span:first-child {
+        font-size: 2rem;
+    }
+}
+
+/* Category Selection */
+.category-selection {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.category-toggle {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.category-toggle:hover {
+    opacity: 0.8;
+}
+
+.category-toggle h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    color: #667eea;
+}
+
+.category-toggle.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.category-instruction {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.category-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1rem;
+}
+
+.category-content.collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+}
+
+.category-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.category-item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-item input[type="checkbox"] {
+    margin-right: 0.8rem;
+    width: 18px;
+    height: 18px;
+    accent-color: #667eea;
+    cursor: pointer;
+}
+
+.category-label {
+    flex: 1;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+}
+
+.category-count {
+    font-size: 0.85rem;
+    color: #666;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    margin-left: 0.5rem;
+}
+
+.category-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.category-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* 復習モード用スタイル */
+.review-mode-indicator {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    box-shadow: 0 2px 4px rgba(255, 152, 0, 0.3);
+}
+
+.review-mode-header {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border: 2px solid #ff9800;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.review-mode-title {
+    color: #e65100;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.review-mode-description {
+    color: #bf360c;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #f57c00 0%, #ef6c00 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+}
+
+/* Question Count Selection Styles */
+.question-count-selection {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.question-count-selection h3 {
+    margin: 0 0 1rem 0;
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+.question-count-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.question-count-option {
+    flex: 1;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.question-count-option:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
+}
+
+.question-count-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.question-count-option input[type="radio"]:checked + .option-label {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.question-count-option input[type="radio"]:checked ~ .option-description {
+    color: #667eea;
+}
+
+.question-count-option:has(input[type="radio"]:checked) {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.question-count-option:has(input[type="radio"]:checked) .option-label {
+    color: white;
+}
+
+.question-count-option:has(input[type="radio"]:checked) .option-description {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.option-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.option-description {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Difficulty Selection Styles */
+.difficulty-selection {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border: 2px solid #dee2e6;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-selection h3 {
+    margin: 0 0 1.5rem 0;
+    color: #495057;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.difficulty-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.difficulty-option {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: white;
+    border: 3px solid #dee2e6;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-color: #667eea;
+}
+
+.difficulty-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.difficulty-option:has(input[type="radio"]:checked) {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+}
+
+.difficulty-option:has(input[type="radio"]:checked) .option-label {
+    color: white;
+    font-weight: 700;
+}
+
+.difficulty-option:has(input[type="radio"]:checked) .option-description {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.difficulty-option:has(input[type="radio"]:checked) .option-details {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.difficulty-option .option-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.difficulty-option .option-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+    line-height: 1.4;
+}
+
+.option-details {
+    font-size: 0.8rem;
+    color: #495057;
+    background: #f8f9fa;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* 初級編・上級編・模擬試験・弱点診断の特別なスタイル */
+.difficulty-option:nth-child(1) .option-label {
+    color: #28a745;
+}
+
+.difficulty-option:nth-child(2) .option-label {
+    color: #dc3545;
+}
+
+.difficulty-option:nth-child(3) .option-label {
+    color: #6f42c1;
+}
+
+.difficulty-option:nth-child(4) .option-label {
+    color: #fd7e14;
+}
+
+.difficulty-option:nth-child(1):hover {
+    border-color: #28a745;
+}
+
+.difficulty-option:nth-child(2):hover {
+    border-color: #dc3545;
+}
+
+.difficulty-option:nth-child(3):hover {
+    border-color: #6f42c1;
+}
+
+.difficulty-option:nth-child(4):hover {
+    border-color: #fd7e14;
+}
+
+.difficulty-option:nth-child(1):has(input[type="radio"]:checked) {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border-color: #28a745;
+}
+
+.difficulty-option:nth-child(2):has(input[type="radio"]:checked) {
+    background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+    border-color: #dc3545;
+}
+
+.difficulty-option:nth-child(3):has(input[type="radio"]:checked) {
+    background: linear-gradient(135deg, #6f42c1 0%, #8b5cf6 100%);
+    border-color: #6f42c1;
+}
+
+.difficulty-option:nth-child(4):has(input[type="radio"]:checked) {
+    background: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
+    border-color: #fd7e14;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.screen.active {
+    animation: fadeIn 0.5s ease;
+}
+
+.option {
+    animation: fadeIn 0.3s ease;
+}
+
+.option:nth-child(1) { animation-delay: 0.1s; }
+.option:nth-child(2) { animation-delay: 0.2s; }
+.option:nth-child(3) { animation-delay: 0.3s; }
+.option:nth-child(4) { animation-delay: 0.4s; }
+.option:nth-child(5) { animation-delay: 0.5s; }
+.option:nth-child(6) { animation-delay: 0.6s; }
+
+/* 派手な演出のレスポンシブ対応 */
+@media (max-width: 768px) {
+    .celebration-correct {
+        font-size: 3rem;
+    }
+    
+    .celebration-incorrect {
+        font-size: 2.5rem;
+    }
+    
+    .celebration-message {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+    
+    .confetti {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .celebration-overlay {
+        padding: 1rem;
+    }
+    
+    /* 復習モードのレスポンシブ対応 */
+    .review-mode-indicator {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+        margin-left: 0.3rem;
+    }
+    
+    .review-mode-header {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .review-mode-title {
+        font-size: 1rem;
+    }
+    
+    .review-mode-description {
+        font-size: 0.8rem;
+    }
+    
+    .result-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .result-actions .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* 難易度選択のレスポンシブ対応 */
+    .difficulty-options {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .difficulty-option {
+        max-width: none;
+        padding: 1rem;
+    }
+    
+    .difficulty-option .option-label {
+        font-size: 1.2rem;
+    }
+    
+    .difficulty-option .option-description {
+        font-size: 0.85rem;
+    }
+    
+    .option-details {
+        font-size: 0.75rem;
+    }
+    
+    /* 上級編問題のモバイル対応 */
+    #quiz-screen.difficulty-advanced .question-card h2 {
+        font-size: 0.9rem;
+        max-height: 40vh;
+        padding: 1rem;
+    }
+    
+    #quiz-screen.difficulty-advanced #explanation-text {
+        font-size: 0.85rem;
+        max-height: 30vh;
+        padding: 0.75rem;
+    }
+}

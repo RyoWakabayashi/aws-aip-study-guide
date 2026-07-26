@@ -1,0 +1,1 @@
+module.exports = [{ id: 'safety-advanced-1', category: 'AI安全性・セキュリティ・ガバナンス', question: '生成 AI アプリケーションで機密情報と不適切出力を扱う対策として選択すべき2つはどれですか。', options: ['Guardrails を入力・出力に適用する', 'ログの PII をマスキングする', '全ログを全社員へ公開する', 'IAM を不要にする', '外部文書をシステム命令として扱う', '監査証跡を削除する'], correct: [0, 1], multipleChoice: true, explanation: '安全性の制御と通常のデータセキュリティを併用します。' }]

@@ -32,23 +32,8 @@ Object.keys(categoryFiles).forEach((categoryKey) => {
 
   if (fs.existsSync(filePath)) {
     try {
-      const fileContent = fs.readFileSync(filePath, 'utf8')
-
-      // ES6 export構文を削除してevalで実行
-      const cleanContent = fileContent
-        .replace(/export\s+default\s+\w+Questions;?/g, '')
-        .replace(/const\s+(\w+Questions)\s*=/, 'var $1 =')
-
-      // eslint-disable-next-line no-eval
-      eval(cleanContent)
-
-      // 変数名を動的に取得
-      const variableName = `${categoryKey.replace(/-([a-z])/g, (g) =>
-        g[1].toUpperCase()
-      )}Questions`
-
-      // eslint-disable-next-line no-eval
-      const questions = eval(variableName)
+      delete require.cache[require.resolve(filePath)]
+      const questions = require(filePath)
 
       if (Array.isArray(questions)) {
         allQuestions = allQuestions.concat(questions)
@@ -135,13 +120,22 @@ const validateQuestions = () => {
             }
         });
         
-        // 選択肢数チェック
-        if (!Array.isArray(question.options) || question.options.length !== 4) {
-            errors.push(\`Question \${index + 1}: Must have exactly 4 options\`);
+        // 選択肢数と正解インデックスチェック
+        const expectedOptionCount = question.multipleChoice ? 6 : 4;
+        if (!Array.isArray(question.options) || question.options.length !== expectedOptionCount) {
+            errors.push(\`Question \${index + 1}: Must have exactly \${expectedOptionCount} options\`);
         }
-        
-        // 正解インデックスチェック
-        if (typeof question.correct !== 'number' || question.correct < 0 || question.correct > 3) {
+
+        if (question.multipleChoice) {
+            const validAnswers = Array.isArray(question.correct) &&
+                question.correct.length >= 2 &&
+                question.correct.length <= 3 &&
+                new Set(question.correct).size === question.correct.length &&
+                question.correct.every(answer => Number.isInteger(answer) && answer >= 0 && answer < 6);
+            if (!validAnswers) {
+                errors.push(\`Question \${index + 1}: Multiple choice answers must contain 2-3 unique indices from 0-5\`);
+            }
+        } else if (!Number.isInteger(question.correct) || question.correct < 0 || question.correct > 3) {
             errors.push(\`Question \${index + 1}: Correct answer index must be 0-3\`);
         }
     });

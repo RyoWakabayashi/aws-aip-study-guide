@@ -1,6 +1,6 @@
 # AWS Certified Generative AI Developer - Professional 学習ガイド
 
-AWS Certified Generative AI Developer - Professional (AIP-C01) の学習教材と、ブラウザで動くクイズゲームです。
+AWS Certified Generative AI Developer - Professional (AIP-C01) の学習教材と、ブラウザで動く400問のクイズゲームです。
 
 ## 試験情報
 
@@ -44,7 +44,7 @@ AWS Certified Generative AI Developer - Professional (AIP-C01) の学習教材�
 - [14. アーキテクチャ図集](./14-architecture-diagrams.md)
 - [15. 公式リーディングリスト](./15-whitepapers-and-reading-list.md)
 - [実践問題集](./practice-questions.md)
-- [クイズゲーム](./quiz-game/)
+- [クイズゲーム（基礎375問＋上級25問）](./quiz-game/)
 
 ## 学習の進め方
 

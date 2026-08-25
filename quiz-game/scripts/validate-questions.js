@@ -192,7 +192,7 @@ allQuestions.forEach((question, index) => {
             chalk.red(
               `❌ Question ${questionNum}: Correct answer index at position ${
                 idx + 1
-              } must be a number between 0 and 3, got ${index}`
+              } must be a number between 0 and 5, got ${index}`
             )
           )
           errors++

@@ -91,8 +91,7 @@ test('Questions data is valid', () => {
   eval(questionsContent)
 
   assert(Array.isArray(allQuestions), 'allQuestions must be an array')
-  assert(allQuestions.length > 0, 'allQuestions must not be empty')
-  assert(allQuestions.length >= 50, 'Should have at least 50 questions')
+  assert(allQuestions.length === 375, 'Basic set should have exactly 375 questions')
 
   let singleChoiceCount = 0
   let multipleChoiceCount = 0
@@ -194,6 +193,47 @@ test('Questions data is valid', () => {
     multipleChoiceCount > 0,
     'Should have at least some multiple choice questions'
   )
+
+  assert(singleChoiceCount === 300, 'Should have exactly 300 single choice questions')
+  assert(multipleChoiceCount === 75, 'Should have exactly 75 multiple choice questions')
+  assert(
+    new Set(allQuestions.map(question => question.id)).size === allQuestions.length,
+    'Every basic question ID should be unique'
+  )
+  assert(
+    new Set(allQuestions.map(question => question.question)).size === allQuestions.length,
+    'Every basic question text should be unique'
+  )
+})
+
+test('Advanced questions data is valid', () => {
+  const advancedPath = path.join(__dirname, '..', 'questions-advanced.js')
+  delete require.cache[require.resolve(advancedPath)]
+  const advancedQuestions = require(advancedPath)
+
+  assert(advancedQuestions.length === 25, 'Advanced set should have exactly 25 questions')
+  assert(
+    new Set(advancedQuestions.map(question => question.id)).size === 25,
+    'Every advanced question ID should be unique'
+  )
+  assert(
+    new Set(advancedQuestions.map(question => question.question)).size === 25,
+    'Every advanced question text should be unique'
+  )
+
+  const categoryCounts = {}
+  advancedQuestions.forEach((question, index) => {
+    categoryCounts[question.category] = (categoryCounts[question.category] || 0) + 1
+    assert(question.multipleChoice, `Advanced question ${index + 1} should be multiple choice`)
+    assert(question.options.length === 6, `Advanced question ${index + 1} should have 6 options`)
+    assert(question.correct.length === 2, `Advanced question ${index + 1} should have 2 answers`)
+    assert(question.explanation.length >= 30, `Advanced question ${index + 1} should have a detailed explanation`)
+  })
+
+  assert(Object.keys(categoryCounts).length === 5, 'Advanced set should cover all 5 categories')
+  Object.entries(categoryCounts).forEach(([category, count]) => {
+    assert(count === 5, `Advanced category '${category}' should have exactly 5 questions`)
+  })
 })
 
 // JavaScript構文チェック
@@ -442,19 +482,21 @@ test('Questions distribution by category', () => {
     }
   })
 
-  // 各カテゴリーに最低限の問題があることを確認
+  assert(Object.keys(categoryStats).length === 5, 'Should have exactly 5 categories')
+
+  // 各カテゴリーに同数の問題があることを確認
   Object.keys(categoryStats).forEach(category => {
     assert(
-      categoryStats[category] >= 5,
-      `Category '${category}' should have at least 5 questions`
+      categoryStats[category] === 75,
+      `Category '${category}' should have exactly 75 questions`
     )
   })
 
   // 各カテゴリーに複数選択問題があることを確認
   Object.keys(multipleChoiceStats).forEach(category => {
     assert(
-      multipleChoiceStats[category] >= 5,
-      `Category '${category}' should have at least 5 multiple choice questions`
+      multipleChoiceStats[category] === 15,
+      `Category '${category}' should have exactly 15 multiple choice questions`
     )
   })
 
